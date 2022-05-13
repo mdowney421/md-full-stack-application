@@ -3,6 +3,40 @@
 <%- include ('./partials/head.ejs') %>
 <body>
     <%- include ('./partials/nav.ejs') %>
+    <h1>Your Workout from <%=workout.date%></h1>
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <form action="/workouts/<%=workout.id%>?_method=DELETE" method="POST">
+                <div class="form-group">
+                    <label for="dateInput">Date</label>
+                    <input name="date" class="form-control" id="dateInput" placeholder="<%=workout.date%>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="typeInput">What type of workout did you do?</label>
+                    <input name="type" class="form-control" id="typeInput" placeholder="<%=workout.type%>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="durationInput">How long did you work out (in minutes)?</label>
+                    <input name="duration" class="form-control" id="durationInput" placeholder="<%=workout.duration%>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="caloriesBurnedInput">Calories burned:</label>
+                    <input name="caloriesBurned" class="form-control" id="typeInput" placeholder="<%=workout.caloriesBurned%>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="notesInput">Notes</label>
+                    <textarea class="form-control" id="notesInput" rows="3" placeholder="<%=workout.notes%>" readonly></textarea>
+                </div>
+                <a href="/workouts">
+                    <button type="button" class="btn">Go Back</button>
+                </a>
+                <a href="/workouts/<%=workout.id%>/edit">
+                    <button type="button" class="btn">Edit Workout</button>
+                </a>
+                <input type="submit" value="Delete Workout" class="btn btn-danger"/>
+            </form>
+        </div>
+    </div>
     <%- include ('./partials/footer.ejs') %>
 </body>
 </html>

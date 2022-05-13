@@ -11,12 +11,13 @@
         <div class="container">
             <% for (let i = 0; i < workouts.length; i++) { %>
                 <div>
-                    <a href="/workouts/<%workouts[i].id%>">
+                    <a href="/workouts/<%=workouts[i].id%>">
                         <h5><%=workouts[i].date%></h5>
                     </a>
                     <p><%=workouts[i].type%></p>
                     <p><%=workouts[i].duration%></p>
                     <p><%=workouts[i].caloriesBurned%></p>
+                    <p><%=workouts[i].notes%></p>
                 </div>
             <% } %>
         </div>

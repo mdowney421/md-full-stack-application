@@ -1,17 +1,17 @@
 module.exports = [{
-    date: "Mon May 9 2022 08:44:59 GMT-0500 (Central Daylight Time)",
+    date: "5/9/22",
     type: "running",
     duration: 37,
     caloriesBurned: 280
 },
 {
-    date: "Wed May 11 2022 08:44:59 GMT-0500 (Central Daylight Time)",
+    date: "5/11/22",
     type: "strength training",
     duration: 62,
     caloriesBurned: 370
 },
 {
-    date: "Fri May 13 2022 08:44:59 GMT-0500 (Central Daylight Time)",
+    date: "5/13/22",
     type: "swimming",
     duration: 42,
     caloriesBurned: 305

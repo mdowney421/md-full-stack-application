@@ -86,7 +86,7 @@ app.get('/workouts/', (req, res)=>{
 })
 
 // SHOW SPECIFIC WORKOUT ROUTE
-app.get('/:id', (req, res)=>{
+app.get('/workouts/:id', (req, res)=>{
     Workout.findById(req.params.id, (err, foundWorkout)=>{
         res.render('view-workout.ejs', {
             workout: foundWorkout
@@ -95,14 +95,14 @@ app.get('/:id', (req, res)=>{
 })
 
 // DELETE SPECIFIC WORKOUT ROUTE
-app.delete('/:id', (req, res)=>{
+app.delete('/workouts/:id', (req, res)=>{
     Workout.findByIdAndRemove(req.params.id, (err, data)=>{
         res.redirect('/workouts/')
     })
 })
 
 // EDIT EXISTING WORKOUT PAGE GET ROUTE
-app.get('/:id/edit', (req, res)=>{
+app.get('/workouts/:id/edit', (req, res)=>{
     Workout.findById(req.params.id, (err, foundWorkout)=>{
         res.render(
     		'edit-workout.ejs',
@@ -114,7 +114,7 @@ app.get('/:id/edit', (req, res)=>{
 })
 
 // EDIT A SPECIFIC WORKOUT PUT ROUTE
-app.put('/:id', (req, res)=>{
+app.put('/workouts/:id', (req, res)=>{
     Workout.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedWorkout)=>{
         res.redirect('/workouts')
     })

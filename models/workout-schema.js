@@ -5,7 +5,8 @@ const workoutSchema = new mongoose.Schema({
     date: Date,
     type: String,
     duration: Number,
-    caloriesBurned: Number
+    caloriesBurned: Number,
+    notes: String
 })
 
 module.exports = mongoose.model('Workout', workoutSchema)
