@@ -54,14 +54,29 @@ app.get('/seed', (req, res)=>{
     )
 })
 
+// NEW WORKOUT CREATE PAGE ROUTE
+app.get('/workouts/new' , (req, res) => {
+    res.render('log-workout.ejs')
+})
+
+ // NEW WORKOUT POST ROUTE
+app.post('/workouts', (req, res) => {
+    Workout.create(req.body, (error, createdWorkout) => {
+        res.redirect('/workouts')
+    })
+})
+
+// ROUTE FOR HOME PAGE
 app.get('/' , (req, res) => {
   res.render('index.ejs')
 })
 
+// ROUTE FOR DASHBOARD PAGE
 app.get('/dashboard' , (req, res) => {
     res.render('dashboard.ejs')
 })
 
+// ROUTE TO VIEW ALL WORKOUTS ON WORKOUT HISTORY PAGE
 app.get('/workouts/', (req, res)=>{
     Workout.find({}, (error, allWorkouts)=>{
         res.render('workout-history.ejs', {
@@ -70,8 +85,39 @@ app.get('/workouts/', (req, res)=>{
     })
 })
 
-app.get('/workouts/new' , (req, res) => {
-    res.render('log-workout.ejs')
+// SHOW SPECIFIC WORKOUT ROUTE
+app.get('/:id', (req, res)=>{
+    Workout.findById(req.params.id, (err, foundWorkout)=>{
+        res.render('view-workout.ejs', {
+            workout: foundWorkout
+        })
+    })
+})
+
+// DELETE SPECIFIC WORKOUT ROUTE
+app.delete('/:id', (req, res)=>{
+    Workout.findByIdAndRemove(req.params.id, (err, data)=>{
+        res.redirect('/workouts/')
+    })
+})
+
+// EDIT EXISTING WORKOUT PAGE GET ROUTE
+app.get('/:id/edit', (req, res)=>{
+    Workout.findById(req.params.id, (err, foundWorkout)=>{
+        res.render(
+    		'edit-workout.ejs',
+    		{
+    			workout: foundWorkout
+    		}
+    	)
+    })
+})
+
+// EDIT A SPECIFIC WORKOUT PUT ROUTE
+app.put('/:id', (req, res)=>{
+    Workout.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedWorkout)=>{
+        res.redirect('/workouts')
+    })
 })
 
 //___________________
