@@ -4,7 +4,7 @@
 <body>
     <%- include ('./partials/nav.ejs') %>
     <div class="jumbotron jumbotron-fluid">
-        <div class="container">
+        <div class="container text-center">
             <h1 class="display-4">Your workout from <%=workout.date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h1>
         </div>
     </div>
@@ -13,11 +13,12 @@
             <form action="/workouts/<%=workout.id%>?_method=PUT" method="POST">
                 <div class="form-group">
                     <label for="dateInput">Date</label>
-                    <input name="date" class="form-control" id="dateInput" value="<%=workout.date.toLocaleDateString('en-us', {year:"numeric", month:"numeric", day:"numeric"})%>">
+                    <input name="date" class="form-control" id="dateInput" value="<%=workout.date.toLocaleDateString('en-us', {year:"numeric", month:"numeric", day:"numeric"})%>" required>
                 </div>
                 <div class="form-group">
                     <label for="workoutTypeInput">What type of workout did you do?</label>
-                    <select name="type" class="form-control" id="workoutTypeInput" value="<%=workout.type%>">
+                    <select name="type" class="form-control" id="workoutTypeInput" value="<%=workout.type%>" required>
+                        <option selected disabled></option>
                         <option>Running</option>
                         <option>Cycling</option>
                         <option>Strength Training</option>
@@ -27,11 +28,11 @@
                 </div>
                 <div class="form-group">
                     <label for="durationInput">How long did you work out (in minutes)?</label>
-                    <input name="duration" class="form-control" id="durationInput" value="<%=workout.duration%>">
+                    <input type="number" name="duration" class="form-control" id="durationInput" value="<%=workout.duration%>" required>
                 </div>
                 <div class="form-group">
                     <label for="caloriesBurnedInput">Calories burned:</label>
-                    <input name="caloriesBurned" class="form-control" id="typeInput" value="<%=workout.caloriesBurned%>">
+                    <input type="number" name="caloriesBurned" class="form-control" id="typeInput" value="<%=workout.caloriesBurned%>" required>
                 </div>
                 <div class="form-group">
                     <label for="notesInput">Notes</label>
