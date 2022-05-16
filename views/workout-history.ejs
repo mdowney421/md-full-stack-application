@@ -5,21 +5,23 @@
         <%- include ('./partials/nav.ejs') %>
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4">Workout History</h1>
+                <h1 class="text-center display-4">Workout History</h1>
             </div>
         </div>
         <div class="container">
-            <% for (let i = 0; i < workouts.length; i++) { %>
-                <div>
-                    <a href="/workouts/<%=workouts[i].id%>">
-                        <h5><%=workouts[i].date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h5>
-                    </a>
-                    <p>Workout Type: <%=workouts[i].type%></p>
-                    <p>Duration (min): <%=workouts[i].duration%></p>
-                    <p>Calories Burned: <%=workouts[i].caloriesBurned%></p>
-                    <p>Notes: <%=workouts[i].notes%></p>
-                </div>
-            <% } %>
+            <div class="row my-5">
+                <% for (let i = workouts.length - 1; i >= 0; i--) { %>
+                    <div class="col-7 text-center mx-auto">
+                        <a href="/workouts/<%=workouts[i].id%>">
+                            <h5><%=workouts[i].date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h5>
+                        </a>
+                        <p>Workout Type: <%=workouts[i].type%></p>
+                        <p>Duration (min): <%=workouts[i].duration%></p>
+                        <p>Calories Burned: <%=workouts[i].caloriesBurned%></p>
+                        <p>Notes: <%=workouts[i].notes%></p>
+                    </div>
+                <% } %>
+            </div>
         </div>
         <%- include ('./partials/footer.ejs') %>
     </body>
