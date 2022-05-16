@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ('./partials/head.ejs') %>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container text-center">
+                <h1 class="display-4">Welcome to <strong>Fitness Tracker</strong>, the best way to keep track of your workouts!</h1>
+                <p class="lead my-5">Please log in to your account or sign up if you don't have.</p>
+            </div>
+        </div>
+        <div class="container text-center my-5">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <form action="/home">
+                        <div class="form-group">
+                            <label for="usernameInput">Username:</label>
+                            <input name="username" class="form-control" id="usernameInput" placeholder="Enter your username here" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordInput">Password:</label>
+                            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Enter your password here" required>
+                        </div>
+                        <div class="button-div">
+                            <input class="btn btn-primary" type="submit" value="Log In"/>
+                        </div>
+                    </form>
+                    <a href="/signup">
+                        <button class="btn btn-secondary my-3">Sign Up</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <%- include ('./partials/footer.ejs') %>
+    </body>
+</html>

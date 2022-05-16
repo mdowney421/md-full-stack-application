@@ -66,8 +66,18 @@ app.post('/workouts', (req, res) => {
     })
 })
 
-// ROUTE FOR HOME PAGE
+// ROUTE FOR LOGIN PAGE
 app.get('/' , (req, res) => {
+    res.render('login.ejs')
+})
+
+// ROUTE FOR SIGN UP PAGE
+app.get('/signup' , (req, res) => {
+    res.render('signup.ejs')
+})
+
+// ROUTE FOR HOME PAGE
+app.get('/home' , (req, res) => {
   res.render('index.ejs')
 })
 

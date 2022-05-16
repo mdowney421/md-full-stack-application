@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ('./partials/head.ejs') %>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container text-center">
+                <h1 class="display-4">Thanks for signing up for <strong>Fitness Tracker</strong>. You won't regret it!</h1>
+                <p class="lead my-5">Please enter the information below to create your free account.</p>
+            </div>
+        </div>
+        <div class="container text-center my-5">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <form action="/home">
+                        <div class="form-group">
+                            <label for="firstNameInput">First name:</label>
+                            <input name="firstName" class="form-control" id="usernameInput" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastNameInput">Last name:</label>
+                            <input name="lastName" class="form-control" id="lastNameInput" placeholder="Enter your last name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usernameInput">Pick a username:</label>
+                            <input name="username" class="form-control" id="usernameInput" placeholder="Enter a username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordInput">Pick a password:</label>
+                            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Enter a password" required>
+                        </div>
+                        <div class="button-div">
+                            <input class="btn btn-primary" type="submit" value="Sign Up"/>
+                        </div>
+                    </form>
+                    <a href="/">
+                        <button class="btn btn-secondary my-3">Back to Login</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <%- include ('./partials/footer.ejs') %>
+    </body>
+</html>
