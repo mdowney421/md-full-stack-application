@@ -15,10 +15,10 @@
                         <a href="/workouts/<%=workouts[i].id%>">
                             <h5><%=workouts[i].date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h5>
                         </a>
-                        <p>Workout Type: <%=workouts[i].type%></p>
-                        <p>Duration (min): <%=workouts[i].duration%></p>
-                        <p>Calories Burned: <%=workouts[i].caloriesBurned%></p>
-                        <p>Notes: <%=workouts[i].notes%></p>
+                        <p>Workout Type: <strong><%=workouts[i].type%></strong></p>
+                        <p>Duration (min): <strong><%=workouts[i].duration%></strong></p>
+                        <p>Calories Burned: <strong><%=workouts[i].caloriesBurned%></strong></p>
+                        <p>Notes: <strong><%=workouts[i].notes%></strong></p>
                     </div>
                 <% } %>
             </div>
