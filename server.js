@@ -73,7 +73,11 @@ app.get('/' , (req, res) => {
 
 // ROUTE FOR DASHBOARD PAGE
 app.get('/dashboard' , (req, res) => {
-    res.render('dashboard.ejs')
+    Workout.find({}, (error, allWorkouts) => {
+        res.render('dashboard.ejs', {
+            workouts: allWorkouts
+        })
+    })
 })
 
 // ROUTE TO VIEW ALL WORKOUTS ON WORKOUT HISTORY PAGE
