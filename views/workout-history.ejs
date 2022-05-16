@@ -12,7 +12,7 @@
             <% for (let i = 0; i < workouts.length; i++) { %>
                 <div>
                     <a href="/workouts/<%=workouts[i].id%>">
-                        <h5><%=workouts[i].date%></h5>
+                        <h5><%=workouts[i].date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h5>
                     </a>
                     <p><%=workouts[i].type%></p>
                     <p><%=workouts[i].duration%></p>
