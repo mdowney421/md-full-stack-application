@@ -10,6 +10,7 @@ const db = mongoose.connection
 const seedData = require('./models/seed-data.js')
 const userData = require('./models/user-data.js')
 const Workout = require('./models/workout-schema.js')
+const User = require('./models/user-schema.js')
 require('dotenv').config()
 //___________________
 //Port
@@ -83,6 +84,12 @@ app.get('/verifyuser' , (req, res) => {
         }
     }
     res.redirect('/')
+})
+
+app.post('/login/new', (req, res) => {
+    User.create(req.body, (error, createdUser) => {
+        res.redirect('/home')
+    })
 })
 
 // ROUTE FOR SIGN UP PAGE
