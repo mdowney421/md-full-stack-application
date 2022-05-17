@@ -6,16 +6,18 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container text-center">
                 <h1 class="display-4">Welcome to your dashboard!</h1>
-                <p class="lead">Check out your progress so far this week.</p>
+                <p class="lead">Check out your progress over the last 7 days.</p>
             </div>
         </div>
         <% let numOfWorkouts = 0 %>
         <% let totalMinutes = 0 %>
         <% let totalCalories = 0 %>
         <% for (let i = 0; i < workouts.length; i++) { %>
-            <% numOfWorkouts++ %>
-            <% totalMinutes += workouts[i].duration %>
-            <% totalCalories += workouts[i].caloriesBurned %>
+            <% if (workouts[i].date > new Date(new Date() - 604800000)) { %>
+                <% numOfWorkouts++ %>
+                <% totalMinutes += workouts[i].duration %>
+                <% totalCalories += workouts[i].caloriesBurned %>
+            <% } %>
         <% } %>
         <div class="row my-5 justify-content-center align-items-baseline">
             <div class="col-lg-3 col-md-4 col-7 d-flex align-items-stretch">

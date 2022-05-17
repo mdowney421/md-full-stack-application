@@ -19,7 +19,7 @@
                     <% for (let i = workouts.length - 1; i >= 0; i--) { %>
                         <div class="col-7 text-center mx-auto my-3">
                             <a href="/workouts/<%=workouts[i].id%>">
-                                <h5><%=workouts[i].date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h5>
+                                <h5 class="my-3"><%=workouts[i].date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h5>
                             </a>
                             <p>Workout Type: <strong><%=workouts[i].type%></strong></p>
                             <p>Duration (min): <strong><%=workouts[i].duration%></strong></p>

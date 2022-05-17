@@ -17,8 +17,8 @@
                 </div>
                 <div class="form-group">
                     <label for="workoutTypeInput">What type of workout did you do?</label>
-                    <select name="type" class="form-control" id="workoutTypeInput" value="<%=workout.type%>" required>
-                        <option selected disabled></option>
+                    <select name="type" class="form-control" id="workoutTypeInput" placeholder="<%=workout.type%>" value="<%=workout.type%>" required>
+                        <option selected disabled><%=workout.type%></option>
                         <option>Running</option>
                         <option>Cycling</option>
                         <option>Strength Training</option>
