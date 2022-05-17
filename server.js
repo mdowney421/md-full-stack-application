@@ -116,7 +116,7 @@ app.get('/home', isAuthenticated, (req, res) => {
 
 // ROUTE FOR DASHBOARD PAGE
 app.get('/dashboard', isAuthenticated, (req, res) => {
-    Workout.find({}, (error, allWorkouts) => {
+    Workout.find({username: req.session.currentUser.username}, (error, allWorkouts) => {
         res.render('dashboard.ejs', {
             workouts: allWorkouts,
             currentUser: req.session.currentUser
@@ -126,7 +126,7 @@ app.get('/dashboard', isAuthenticated, (req, res) => {
 
 // ROUTE TO VIEW ALL WORKOUTS ON WORKOUT HISTORY PAGE
 app.get('/workouts/', isAuthenticated, (req, res)=>{
-    Workout.find({}, (error, allWorkouts)=>{
+    Workout.find({username: req.session.currentUser.username}, (error, allWorkouts)=>{
         res.render('workout-history.ejs', {
             workouts: allWorkouts,
             currentUser: req.session.currentUser

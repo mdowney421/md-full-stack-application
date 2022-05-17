@@ -12,6 +12,10 @@
         <div class="col-8 col-lg-6 mx-auto">
             <form action="/workouts" method="POST">
                 <div class="form-group">
+                    <label for="usernameInput">Username</label>
+                    <input name="username" class="form-control" id="usenameInput" placeholder="<%=currentUser.username%>" value="<%=currentUser.username%>" readonly>
+                </div>
+                <div class="form-group">
                     <label for="dateInput">Date</label>
                     <input name="date" class="form-control" id="dateInput" placeholder="mm/dd/yyyy" required>
                 </div>
