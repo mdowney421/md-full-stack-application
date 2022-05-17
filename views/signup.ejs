@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include ('./partials/head.ejs') %>
-    <body>
+    <body class="signup">
         <div class="jumbotron jumbotron-fluid">
             <div class="container text-center">
                 <h1 class="display-4">Thanks for signing up for <strong>Fitness Tracker</strong>. You won't regret it!</h1>
@@ -10,23 +10,23 @@
         </div>
         <div class="container text-center my-5">
             <div class="row justify-content-center">
-                <div class="col-4">
-                    <p style="color: red;">WARNING: DO NOT USE LEGITIMATE USERNAME/PASSWORD INFORMATION! THIS IS NOT A SECURE SITE!</p>
+                <div class="col-6 col-md-4">
+                    <p style="color: red;" class="bg-light">WARNING: DO NOT USE LEGITIMATE USERNAME / PASSWORD INFORMATION! THIS IS NOT A SECURE SITE!</p>
                     <form action="/users" method="POST">
                         <div class="form-group">
-                            <label for="firstNameInput">First name:</label>
+                            <label for="firstNameInput" class="text-white">First name:</label>
                             <input name="firstName" class="form-control" id="usernameInput" placeholder="Enter your first name" required>
                         </div>
                         <div class="form-group">
-                            <label for="lastNameInput">Last name:</label>
+                            <label for="lastNameInput" class="text-white">Last name:</label>
                             <input name="lastName" class="form-control" id="lastNameInput" placeholder="Enter your last name" required>
                         </div>
                         <div class="form-group">
-                            <label for="usernameInput">Pick a username:</label>
+                            <label for="usernameInput" class="text-white">Pick a username:</label>
                             <input name="username" class="form-control" id="usernameInput" placeholder="Enter a username" required>
                         </div>
                         <div class="form-group">
-                            <label for="passwordInput">Pick a password:</label>
+                            <label for="passwordInput" class="text-white">Pick a password:</label>
                             <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Enter a password" required>
                         </div>
                         <div class="button-div">

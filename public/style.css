@@ -1,6 +1,13 @@
-/* body {
-    background-image: url('https://as2.ftcdn.net/v2/jpg/02/34/00/05/1000_F_234000529_tDJfNg4347DorpMBpWmHSyRn22FuPd18.jpg');
+.login {
+    background-image: url('./media/exercise1.webp');
     background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
-} */
+}
+
+.signup {
+    background-image: url('./media/exercise3.jpg');
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

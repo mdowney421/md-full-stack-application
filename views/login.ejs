@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include ('./partials/head.ejs') %>
-    <body>
+    <body class="login">
         <div class="jumbotron jumbotron-fluid">
             <div class="container text-center">
                 <h1 class="display-4">Welcome to <strong>Fitness Tracker</strong>, the best way to keep track of your workouts!</h1>
@@ -13,12 +13,12 @@
                 <div class="col-6 col-md-4">
                     <form action="/sessions" method="POST">
                         <div class="form-group">
-                            <label for="usernameInput">Username:</label>
-                            <input name="username" class="form-control" id="usernameInput" placeholder="Enter your username here" required>
+                            <label for="usernameInput" class="text-white">Username:</label>
+                            <input name="username" class="form-control" id="usernameInput" placeholder="Enter your username" required>
                         </div>
                         <div class="form-group">
-                            <label for="passwordInput">Password:</label>
-                            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Enter your password here" required>
+                            <label for="passwordInput" class="text-white">Password:</label>
+                            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Enter your password" required>
                         </div>
                         <div class="button-div">
                             <input class="btn btn-primary" type="submit" value="Log In"/>
