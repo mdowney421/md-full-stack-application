@@ -4,6 +4,7 @@
 const express = require('express')
 const { redirect } = require('express/lib/response')
 const methodOverride  = require('method-override')
+const bodyParser = require('body-parser')
 const mongoose = require ('mongoose')
 const app = express ()
 const db = mongoose.connection
@@ -11,7 +12,11 @@ const seedData = require('./models/seed-data.js')
 const userData = require('./models/user-data.js')
 const Workout = require('./models/workout-schema.js')
 const User = require('./models/user-schema.js')
+const userController = require('./controllers/users-controller.js')
+const session = require('express-session')
+const sessionsController = require('./controllers/sessions-controller.js')
 require('dotenv').config()
+
 //___________________
 //Port
 //___________________
@@ -39,15 +44,27 @@ db.on('disconnected', () => console.log('mongo disconnected'))
 //___________________
 //Middleware
 //___________________
-
-//use public folder for static assets
 app.use(express.static('public'))
-
-// populates req.body with parsed info from forms - if no data from forms will return an empty object {}
-app.use(express.urlencoded({ extended: false }))// extended: false - does not allow nested objects in query strings
-app.use(express.json())// returns middleware that only parses JSON - may or may not need it depending on your project
-app.use(methodOverride('_method'))// allow POST, PUT and DELETE from a form
-
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(methodOverride('_method'))
+app.use(bodyParser.urlencoded({extended: false}))
+app.use('/users', userController)
+app.use(
+    session({
+        secret: process.env.SECRET,
+        resave: false,
+        saveUninitialized: false
+    })
+)
+const isAuthenticated = (req, res, next) => {
+    if (req.session.currentUser) {
+      return next()
+    } else {
+      res.redirect('/sessions/new')
+    }
+}
+app.use('/sessions', sessionsController)
 
 // SEED DATA ROUTE
 app.get('/seed', (req, res)=>{
@@ -58,12 +75,14 @@ app.get('/seed', (req, res)=>{
 })
 
 // NEW WORKOUT CREATE PAGE ROUTE
-app.get('/workouts/new' , (req, res) => {
-    res.render('log-workout.ejs')
+app.get('/workouts/new', isAuthenticated, (req, res) => {
+    res.render('log-workout.ejs', {
+        currentUser: req.session.currentUser
+    })
 })
 
- // NEW WORKOUT POST ROUTE
-app.post('/workouts', (req, res) => {
+// NEW WORKOUT POST ROUTE
+app.post('/workouts', isAuthenticated, (req, res) => {
     Workout.create(req.body, (error, createdWorkout) => {
         res.redirect('/workouts')
     })
@@ -71,21 +90,12 @@ app.post('/workouts', (req, res) => {
 
 // ROUTE FOR LOGIN PAGE
 app.get('/' , (req, res) => {
-    res.render('login.ejs')
+    res.render('login.ejs', {
+        currentUser: req.session.currentUser
+    })
 })
 
-// ROUTE FOR USER AUTHENTICATION
-app.get('/verifyuser' , (req, res) => {
-    for (let i = 0; i < userData.length; i++) {
-        if (userData[i].username === req.query.username) {
-            if (userData[i].password === req.query.password) {
-                res.redirect('/home')
-            }
-        }
-    }
-    res.redirect('/')
-})
-
+// ROUTE FOR CREATING NEW USER
 app.post('/login/new', (req, res) => {
     User.create(req.body, (error, createdUser) => {
         res.redirect('/home')
@@ -93,63 +103,69 @@ app.post('/login/new', (req, res) => {
 })
 
 // ROUTE FOR SIGN UP PAGE
-app.get('/signup' , (req, res) => {
+app.get('/signup', (req, res) => {
     res.render('signup.ejs')
 })
 
 // ROUTE FOR HOME PAGE
-app.get('/home' , (req, res) => {
-  res.render('index.ejs')
+app.get('/home', isAuthenticated, (req, res) => {
+  res.render('index.ejs', {
+      currentUser: req.session.currentUser
+    })
 })
 
 // ROUTE FOR DASHBOARD PAGE
-app.get('/dashboard' , (req, res) => {
+app.get('/dashboard', isAuthenticated, (req, res) => {
     Workout.find({}, (error, allWorkouts) => {
         res.render('dashboard.ejs', {
-            workouts: allWorkouts
+            workouts: allWorkouts,
+            currentUser: req.session.currentUser
         })
     })
 })
 
 // ROUTE TO VIEW ALL WORKOUTS ON WORKOUT HISTORY PAGE
-app.get('/workouts/', (req, res)=>{
+app.get('/workouts/', isAuthenticated, (req, res)=>{
     Workout.find({}, (error, allWorkouts)=>{
         res.render('workout-history.ejs', {
-            workouts: allWorkouts
+            workouts: allWorkouts,
+            currentUser: req.session.currentUser
         })
     })
 })
 
 // SHOW SPECIFIC WORKOUT ROUTE
-app.get('/workouts/:id', (req, res)=>{
+app.get('/workouts/:id', isAuthenticated, (req, res)=>{
     Workout.findById(req.params.id, (err, foundWorkout)=>{
         res.render('view-workout.ejs', {
-            workout: foundWorkout
+            workout: foundWorkout,
+            currentUser: req.session.currentUser
         })
     })
 })
 
 // DELETE SPECIFIC WORKOUT ROUTE
-app.delete('/workouts/:id', (req, res)=>{
+app.delete('/workouts/:id', isAuthenticated, (req, res)=>{
     Workout.findByIdAndRemove(req.params.id, (err, data)=>{
         res.redirect('/workouts/')
     })
 })
 
 // EDIT EXISTING WORKOUT PAGE GET ROUTE
-app.get('/workouts/:id/edit', (req, res)=>{
+app.get('/workouts/:id/edit', isAuthenticated, (req, res)=>{
     Workout.findById(req.params.id, (err, foundWorkout)=>{
         res.render(
     		'edit-workout.ejs',
     		{
-    			workout: foundWorkout
+    			workout: foundWorkout,
+                currentUser: req.session.currentUser
     		}
     	)
     })
 })
 
 // EDIT A SPECIFIC WORKOUT PUT ROUTE
-app.put('/workouts/:id', (req, res)=>{
+app.put('/workouts/:id', isAuthenticated, (req, res)=>{
     Workout.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedWorkout)=>{
         res.redirect('/workouts')
     })
