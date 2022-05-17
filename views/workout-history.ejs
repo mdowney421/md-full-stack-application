@@ -10,16 +10,23 @@
         </div>
         <div class="container">
             <div class="row my-5">
-                <% for (let i = workouts.length - 1; i >= 0; i--) { %>
-                    <div class="col-7 text-center mx-auto my-3">
-                        <a href="/workouts/<%=workouts[i].id%>">
-                            <h5><%=workouts[i].date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h5>
-                        </a>
-                        <p>Workout Type: <strong><%=workouts[i].type%></strong></p>
-                        <p>Duration (min): <strong><%=workouts[i].duration%></strong></p>
-                        <p>Calories Burned: <strong><%=workouts[i].caloriesBurned%></strong></p>
-                        <p>Notes: <strong><%=workouts[i].notes%></strong></p>
+                <% if (workouts.length === 0) { %>
+                    <div class="col-6 text-center mx-auto">
+                        <p>Oops! Looks like you haven't logged any workouts yet.</p>
+                        <p>Go to the <a href="/workouts/new">Add a Workout</a> page to get started!</p>
                     </div>
+                <% } else { %>
+                    <% for (let i = workouts.length - 1; i >= 0; i--) { %>
+                        <div class="col-7 text-center mx-auto my-3">
+                            <a href="/workouts/<%=workouts[i].id%>">
+                                <h5><%=workouts[i].date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h5>
+                            </a>
+                            <p>Workout Type: <strong><%=workouts[i].type%></strong></p>
+                            <p>Duration (min): <strong><%=workouts[i].duration%></strong></p>
+                            <p>Calories Burned: <strong><%=workouts[i].caloriesBurned%></strong></p>
+                            <p>Notes: <strong><%=workouts[i].notes%></strong></p>
+                        </div>
+                    <% } %>
                 <% } %>
             </div>
         </div>
