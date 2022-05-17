@@ -2,11 +2,13 @@
 //Dependencies
 //___________________
 const express = require('express')
+const { redirect } = require('express/lib/response')
 const methodOverride  = require('method-override')
 const mongoose = require ('mongoose')
 const app = express ()
 const db = mongoose.connection
 const seedData = require('./models/seed-data.js')
+const userData = require('./models/user-data.js')
 const Workout = require('./models/workout-schema.js')
 require('dotenv').config()
 //___________________
@@ -69,6 +71,18 @@ app.post('/workouts', (req, res) => {
 // ROUTE FOR LOGIN PAGE
 app.get('/' , (req, res) => {
     res.render('login.ejs')
+})
+
+// ROUTE FOR USER AUTHENTICATION
+app.get('/verifyuser' , (req, res) => {
+    for (let i = 0; i < userData.length; i++) {
+        if (userData[i].username === req.query.username) {
+            if (userData[i].password === req.query.password) {
+                res.redirect('/home')
+            }
+        }
+    }
+    res.redirect('/')
 })
 
 // ROUTE FOR SIGN UP PAGE
