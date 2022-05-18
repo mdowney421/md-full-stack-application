@@ -1,11 +1,9 @@
-const dates = ['5/22/22', '5/12/22', '5/16/22', '5/13/22']
-const today = new Date()
+const activities = [
+    { title: 'Hiking', date: new Date('2019-06-28') },
+    { title: 'Shopping', date: new Date('2019-06-10') },
+    { title: 'Trekking', date: new Date('2019-06-22') }
+]
 
+const sortedActivities = activities.sort((a, b) => b.date - a.date)
 
-for (let date of dates) {
-    if (today - date < 7) {
-        console.log(date)
-    }
-}
-
-console.log(new Date(new Date() - 604800000))
+console.log(sortedActivities)

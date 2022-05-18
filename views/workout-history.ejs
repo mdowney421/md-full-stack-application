@@ -16,7 +16,8 @@
                         <p>Go to the <a href="/workouts/new">Add a Workout</a> page to get started!</p>
                     </div>
                 <% } else { %>
-                    <% for (let i = workouts.length - 1; i >= 0; i--) { %>
+                    <% let sortedWorkouts = workouts.sort((a, b) => b.date - a.date) %>
+                    <% for (let i = 0; i < sortedWorkouts.length; i++) { %>
                         <div class="col-7 text-center mx-auto my-3">
                             <a href="/workouts/<%=workouts[i].id%>">
                                 <h5 class="my-3"><%=workouts[i].date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})%></h5>
