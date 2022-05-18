@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ('./partials/head.ejs') %>
+    <body class="login-error">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container text-center">
+                <h1 class="display-4 text-danger">Oops!</h1>
+            </div>
+        </div>
+        <div class="container text-center my-5">
+            <div class="row test-center my-5">
+                <h1 class="text-white bg-dark">Looks like you entered an incorrect username or password.</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6 col-md-4">
+                    <a href="/">
+                        <button class="btn btn-primary my-3">Back To Login Page</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <%- include ('./partials/footer.ejs') %>
+    </body>
+</html>

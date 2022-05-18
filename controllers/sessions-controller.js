@@ -14,13 +14,13 @@ sessions.post('/', (req, res) => {
       console.log(err)
       res.send('oops the db had a problem')
     } else if (!foundUser) {
-      res.send('<a href="/">Sorry, that username cannot be found! Click here to go back to the login page.</a>')
+      res.render('login-error.ejs')
     } else {
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.currentUser = foundUser
         res.redirect('/home')
       } else {
-        res.send('<a href="/">Incorrect password entered! Click here to go back ot the login page.</a>')
+        res.render('login-error.ejs')
       }
     }
   })

@@ -11,3 +11,10 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.login-error {
+    background-image: url('./media/exercise4.jpg');
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
