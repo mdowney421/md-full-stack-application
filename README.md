@@ -1,7 +1,7 @@
 # PumpedUp - *a full-stack web application for logging workouts and reviewing key metrics*
 
 ## Link to App on Heroku
-https://cryptic-reaches-48348.herokuapp.com/
+https://pumpedup-web-application.herokuapp.com/
 
 ### Project Description
 This project has full user authentication sessions with encrypted password storage. Users have the ability to log in to their existing account or create a new one if they do not yet have one. All user data is stored in a MongoDB remote server.
