@@ -1,5 +1,4 @@
-# PumpedUp
-## a full-stack web application for logging workouts and reviewing key metrics
+# PumpedUp - *a full-stack web application for logging workouts and reviewing key metrics*
 
 ## Link to App on Heroku
 https://cryptic-reaches-48348.herokuapp.com/
