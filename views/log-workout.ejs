@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <label for="dateInput">Date</label>
-                    <input name="date" class="form-control" id="dateInput" placeholder="mm/dd/yyyy" required>
+                    <input name="date" class="form-control" id="dateInput" placeholder="mm/dd/yyyy" maxlength=10  onkeyup="this.value=this.value.replace(/^(\d\d)(\d{1,2})$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d{1,4})$/g,'$1/$2')" required>
                 </div>
                 <div class="form-group">
                     <label for="workoutTypeInput">What type of workout did you do?</label>

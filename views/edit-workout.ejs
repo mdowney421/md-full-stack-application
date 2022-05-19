@@ -13,7 +13,7 @@
             <form action="/workouts/<%=workout.id%>?_method=PUT" method="POST">
                 <div class="form-group">
                     <label for="dateInput">Date</label>
-                    <input name="date" class="form-control" id="dateInput" value="<%=workout.date.toLocaleDateString('en-us', {year:"numeric", month:"numeric", day:"numeric"})%>" required>
+                    <input name="date" class="form-control" id="dateInput" value="<%=workout.date.toLocaleDateString('en-us', {year:"numeric", month:"numeric", day:"numeric"})%>" maxlength=10  onkeyup="this.value=this.value.replace(/^(\d\d)(\d{1,2})$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d{1,4})$/g,'$1/$2')" required>
                 </div>
                 <div class="form-group">
                     <label for="workoutTypeInput">What type of workout did you do?</label>
